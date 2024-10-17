@@ -1,55 +1,20 @@
+import "./index.css";
+import Header from "./components/Header";
 import AddWeight from "./components/AddWeight";
 import { MyResponsiveLine } from "./components/Graph";
-import Header from "./components/Header";
-import "./index.css";
-
-const DUMMY_DATA = [
-  {
-    id: "japan",
-    color: "hsl(284, 70%, 50%)",
-    data: [
-      {
-        x: "plane",
-        y: 226,
-      },
-      {
-        x: "helicopter",
-        y: 180,
-      },
-      {
-        x: "boat",
-        y: 242,
-      },
-      {
-        x: "train",
-        y: 269,
-      },
-      {
-        x: "subway",
-        y: 276,
-      },
-      {
-        x: "bus",
-        y: 215,
-      },
-      {
-        x: "car",
-        y: 113,
-      },
-      {
-        x: "moto",
-        y: 146,
-      },
-    ],
-  },
-];
+import { GET_WEIGHTS } from "./queries/weightsQuery";
+import { useQuery } from "@apollo/client";
+import { parseBeData } from "./utils/parseBeData";
 
 function App() {
+  const { loading, error, data } = useQuery(GET_WEIGHTS);
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
   return (
     <>
       <Header />
       <div className="h-128">
-        <MyResponsiveLine data={DUMMY_DATA} />
+        <MyResponsiveLine data={parseBeData(data)} />
       </div>
       <AddWeight />
     </>

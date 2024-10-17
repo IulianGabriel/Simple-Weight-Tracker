@@ -17,7 +17,6 @@ app.use(cors());
 app.use(express.json());
 // Routes
 app.use(weightRoutes);
-// Start the server
 server.listen(process.env.PORT, () => {
     console.log(`server running on http://localhost:${port}`);
 });

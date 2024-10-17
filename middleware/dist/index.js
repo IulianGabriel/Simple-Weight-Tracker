@@ -4,36 +4,29 @@ import { startStandaloneServer } from "@apollo/server/standalone"; // preserve-l
 // that together define the "shape" of queries that are executed against
 // your data.
 const typeDefs = `#graphql
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Book {
-    title: String
-    author: String!
+  type Weight {
+    x: String
+    y: Int
   }
 
   # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
+  # clients can execute, along with the return type for each. 
+
   type Query {
-    books: [Book]
+    weight: [Weight]
   }
 `;
-const books = [
-    {
-        title: "The Awakening",
-        author: "Kate Chopin",
-    },
-    {
-        title: "City of Glass",
-        author: "Paul Auster",
-    },
-];
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
 const resolvers = {
     Query: {
-        books: () => books,
+        // Pentru query-ul "weight" sa imi returneze
+        weight: async () => {
+            const url = "http://localhost:5000/weight";
+            const response = await fetch(url);
+            return await response.json();
+        },
     },
 };
 // The ApolloServer constructor requires two parameters: your schema

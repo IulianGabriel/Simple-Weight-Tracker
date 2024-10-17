@@ -11,13 +11,14 @@ interface MyResponsiveLineProps {
   data: DataSeries[];
 }
 
+
 export const MyResponsiveLine = ({ data }: MyResponsiveLineProps) => (
   <ResponsiveLine
-    data={data}
-    margin={{ top: 50, right: 10, bottom: 50, left: 35 }}
-    xScale={{ type: "point" }}
-    yScale={{
-      type: "linear",
+  data={data}
+  margin={{ top: 50, right: 10, bottom: 50, left: 35 }}
+  xScale={{ type: "point" }}
+  yScale={{
+    type: "linear",
       min: "auto",
       max: "auto",
       stacked: false,
@@ -30,7 +31,7 @@ export const MyResponsiveLine = ({ data }: MyResponsiveLineProps) => (
       tickSize: 5,
       tickPadding: 10,
       tickRotation: -45,
-      format: (value) => (value.length > 5 ? `${value.slice(0, 5)}...` : value),
+      // format: (value) => (value.length > 5 ? `${value.slice(0, 5)}...` : value),
     }}
     axisLeft={{
       tickSize: 5,
@@ -70,5 +71,5 @@ export const MyResponsiveLine = ({ data }: MyResponsiveLineProps) => (
         },
       },
     }}
-  />
+    />
 );
