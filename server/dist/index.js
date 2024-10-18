@@ -2,6 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import cors from "cors";
 import weightRoutes from "./routes/weightRoutes.js";
+import addWeightRoutes from "./routes/addWeightRoute.js";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 // Routes
 app.use(weightRoutes);
+app.use(addWeightRoutes);
 server.listen(process.env.PORT, () => {
     console.log(`server running on http://localhost:${port}`);
 });
