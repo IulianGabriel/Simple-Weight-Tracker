@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "ES2022", // or "ES2017" or higher
-    "module": "NodeNext", // for Node.js ES module support
+    "target": "ES2022",
+    "module": "NodeNext",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "types": ["node", "express"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

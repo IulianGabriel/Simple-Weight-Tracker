@@ -2,7 +2,12 @@ import { weightCollection } from "../index.js";
 import { Request, Response } from "express";
 
 export const addWeight = async (req: Request, res: Response) => {
-  let newWeight = req.body;
+  const { x, y } = req.body;
+
+  if (typeof x !== "string" || typeof y !== "number") {
+    return res.status(400).send({ error: "Invalid input" });
+  }
+  const newWeight = { x, y };
   let result = await weightCollection.insertOne(newWeight);
-  res.send(result).status(204);
+  res.status(201).send(result);
 };
