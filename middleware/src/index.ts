@@ -1,6 +1,5 @@
-import { ApolloServer } from "@apollo/server"; // preserve-line
-import { startStandaloneServer } from "@apollo/server/standalone"; // preserve-line
-
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
@@ -17,6 +16,11 @@ const typeDefs = `#graphql
   type Query {
     weight: [Weight]
   }
+
+  type Mutation {
+  addWeight(x: String!, y: Int!): Weight
+  }
+
 `;
 
 // Resolvers define how to fetch the types defined in your schema.
@@ -30,6 +34,24 @@ const resolvers = {
       return await response.json();
     },
   },
+  Mutation: {
+    addWeight: async (_, { x, y }) => {
+      const url = "http://localhost:5000/add-weight";
+      const newWeight = { x, y };
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newWeight),
+      });
+
+      const result = await response.json();
+      console.log(result);
+      return result;
+    },
+  },
 };
 
 // The ApolloServer constructor requires two parameters: your schema
@@ -39,10 +61,6 @@ const server = new ApolloServer({
   resolvers,
 });
 
-// Passing an ApolloServer instance to the `startStandaloneServer` function:
-//  1. creates an Express app
-//  2. installs your ApolloServer instance as middleware
-//  3. prepares your app to handle incoming requests
 const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
 });

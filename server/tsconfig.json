@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "ES2022",
-    "module": "NodeNext",
+    "target": "ES2017",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
+    "allowSyntheticDefaultImports": true,
     "types": ["node", "express"]
   },
   "include": ["src/**/*"],

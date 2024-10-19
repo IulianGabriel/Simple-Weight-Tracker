@@ -27,22 +27,19 @@ const AddWeight = () => {
           >
             <p className="text-lg font-medium text-gray-900">Add a record</p>
 
-            {/* Weight input */}
             <input
               type="number"
               placeholder="Weight"
               className="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-600 placeholder-gray-400"
             />
 
-            {/* Date input */}
             <div className="relative">
               <input
                 type="date"
                 placeholder="Date"
                 className="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-600 placeholder-gray-400"
               />
-              <span className="absolute right-4 top-4 text-gray-400">
-              </span>
+              <span className="absolute right-4 top-4 text-gray-400"></span>
             </div>
 
             {/* Buttons */}
@@ -53,7 +50,10 @@ const AddWeight = () => {
               >
                 Cancel
               </button>
-              <button className="w-24 py-2 text-gray-50 bg-purple-600 rounded-lg hover:bg-purple-500">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-24 py-2 text-gray-50 bg-purple-600 rounded-lg hover:bg-purple-500"
+              >
                 OK
               </button>
             </div>
