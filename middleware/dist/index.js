@@ -45,7 +45,6 @@ const resolvers = {
                 body: JSON.stringify(newWeight),
             });
             const result = await response.json();
-            console.log(result);
             return result;
         },
     },
