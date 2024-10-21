@@ -4,6 +4,7 @@ import cors from "cors";
 import weightRoutes from "./routes/weightRoutes.js";
 import addWeightRoutes from "./routes/addWeightRoute.js";
 import editWeightRoutes from "./routes/editWeightRoute.js";
+import deleteWeightRoutes from "./routes/deleteWeightRoute.js";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
 dotenv.config();
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use(weightRoutes);
 app.use(addWeightRoutes);
 app.use(editWeightRoutes);
+app.use(deleteWeightRoutes);
 
 server.listen(process.env.PORT, () => {
   console.log(`server running on http://localhost:${port}`);
