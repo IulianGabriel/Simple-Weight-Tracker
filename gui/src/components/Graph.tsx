@@ -1,7 +1,14 @@
 import { ResponsiveLine } from "@nivo/line";
 import "../index.css";
+import React from "react";
 // website examples showcase many properties,
 // you'll often use just a few of them.
+
+interface ModalInfo {
+  weight: string;
+  date: string;
+}
+
 interface DataSeries {
   id: string;
   color: string;
@@ -9,9 +16,15 @@ interface DataSeries {
 }
 interface MyResponsiveLineProps {
   data: DataSeries[];
+  setIsOpen: React.Dispatch<React.SetStateAction<string>>;
+  setModalInfo: React.Dispatch<React.SetStateAction<ModalInfo>>;
 }
 
-export const MyResponsiveLine = ({ data }: MyResponsiveLineProps) => (
+export const MyResponsiveLine = ({
+  data,
+  setIsOpen,
+  setModalInfo,
+}: MyResponsiveLineProps) => (
   <ResponsiveLine
     data={data}
     margin={{ top: 50, right: 10, bottom: 60, left: 35 }}
@@ -42,7 +55,17 @@ export const MyResponsiveLine = ({ data }: MyResponsiveLineProps) => (
     pointBorderColor={{ from: "serieColor" }}
     pointLabel="data.yFormatted"
     pointLabelYOffset={-12}
-    enableSlices="x"
+    // enableSlices="x"
+    onClick={(point) => {
+      // Casting x and y to the correct types
+      const clickedDate = point.data.x as string;
+      const clickedWeight = point.data.y as string;
+      setIsOpen("edit");
+      setModalInfo({
+        weight: clickedWeight,
+        date: clickedDate,
+      });
+    }}
     enableGridX={false}
     useMesh={true}
     // Apply custom theme

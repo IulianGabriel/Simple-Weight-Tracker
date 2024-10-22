@@ -5,8 +5,11 @@ import { MyResponsiveLine } from "./components/Graph";
 import { GET_WEIGHTS } from "./queries/weightsQuery";
 import { useQuery } from "@apollo/client";
 import { parseBeData } from "./utils/parseBeData";
+import { useState } from "react";
 
 function App() {
+  const [isOpen, setIsOpen] = useState("closed");
+  const [modalInfo, setModalInfo] = useState({ weight: "", date: "" });
   const { loading, error, data } = useQuery(GET_WEIGHTS);
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
@@ -14,9 +17,18 @@ function App() {
     <>
       <Header />
       <div className="h-128">
-        <MyResponsiveLine data={parseBeData(data)} />
+        <MyResponsiveLine
+          setIsOpen={setIsOpen}
+          data={parseBeData(data)}
+          setModalInfo={setModalInfo}
+        />
       </div>
-      <AddWeight />
+      <AddWeight
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        modalInfo={modalInfo}
+        setModalInfo={setModalInfo}
+      />
     </>
   );
 }
