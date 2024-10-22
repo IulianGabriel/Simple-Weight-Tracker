@@ -1,8 +1,6 @@
 import { ResponsiveLine } from "@nivo/line";
 import "../index.css";
 import React from "react";
-// website examples showcase many properties,
-// you'll often use just a few of them.
 
 interface ModalInfo {
   weight: string;
@@ -27,7 +25,7 @@ export const MyResponsiveLine = ({
 }: MyResponsiveLineProps) => (
   <ResponsiveLine
     data={data}
-    margin={{ top: 50, right: 10, bottom: 60, left: 35 }}
+    margin={{ top: 50, right: 20, bottom: 60, left: 45 }}
     xScale={{ type: "point" }}
     yScale={{
       type: "linear",
@@ -49,13 +47,14 @@ export const MyResponsiveLine = ({
       tickPadding: 6,
       tickRotation: 0,
     }}
-    pointSize={10}
-    pointColor={{ theme: "background" }}
+    colors={{ scheme: "nivo" }}
+    pointSize={11}
+    pointColor={{ from: "color", modifiers: [] }}
     pointBorderWidth={2}
+    enableCrosshair={false}
     pointBorderColor={{ from: "serieColor" }}
     pointLabel="data.yFormatted"
     pointLabelYOffset={-12}
-    // enableSlices="x"
     onClick={(point) => {
       // Casting x and y to the correct types
       const clickedDate = point.data.x as string;

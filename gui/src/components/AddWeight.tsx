@@ -5,13 +5,11 @@ import { GET_WEIGHTS } from "../queries/weightsQuery";
 import { UPDATE_WEIGHT } from "../queries/updateWeight";
 import { DELETE_WEIGHT } from "../queries/deleteWeight";
 
-// Define the type for modalInfo
 interface ModalInfo {
   weight: string;
   date: string;
 }
 
-// Define the props interface
 interface AddWeightProps {
   isOpen: string;
   setIsOpen: (state: "add" | "edit" | "closed") => void;
@@ -26,7 +24,6 @@ const AddWeight = ({
   setModalInfo,
 }: AddWeightProps) => {
   const { weight, date = "" } = modalInfo;
-  // Refetch GET_WEIGHTS query after ADD_WEIGHT mutation
   const [addWeight] = useMutation(ADD_WEIGHT, {
     refetchQueries: [{ query: GET_WEIGHTS }],
   });
@@ -73,7 +70,7 @@ const AddWeight = ({
 
   return (
     <>
-      <div className="flex justify-center items-center mt-6 sm:mt-4">
+      <div className="flex justify-center items-center mt-8 sm:mt-4">
         <button
           onClick={() => setIsOpen("add")}
           className="w-14 h-14 text-2xl rounded-full sm:w-16 sm:h-16 sm:text-3xl text-white  bg-blue-600 hover:bg-blue-500 active:scale-90"
