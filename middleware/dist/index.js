@@ -19,8 +19,9 @@ const typeDefs = `#graphql
 
   type Mutation {
   addWeight(x: String!, y: Int!): Weight
+  editWeight(x: String!, y:Int!): Weight
+  deleteWeight(x: String!): Weight
   }
-
 `;
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
@@ -43,6 +44,31 @@ const resolvers = {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(newWeight),
+            });
+            const result = await response.json();
+            return result;
+        },
+        editWeight: async (_, { x, y }) => {
+            const url = "http://localhost:5000/edit-weight";
+            const updatedWeight = { x, y };
+            const response = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedWeight),
+            });
+            const result = await response.json();
+            return result;
+        },
+        deleteWeight: async (_, { x, y }) => {
+            const url = "http://localhost:5000/delete-weight";
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ x, y }),
             });
             const result = await response.json();
             return result;

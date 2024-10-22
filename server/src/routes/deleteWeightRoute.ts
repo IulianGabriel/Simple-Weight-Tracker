@@ -3,6 +3,6 @@ import { deleteWeight } from "../controllers/deleteWeight.js";
 
 const router = Router();
 
-router.delete("/weights", deleteWeight as any);
+router.delete("/delete-weight", deleteWeight as any);
 
-export default router
+export default router;
