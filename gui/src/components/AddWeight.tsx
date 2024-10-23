@@ -126,14 +126,19 @@ const AddWeight = ({
 
             <div className="flex justify-between mt-6">
               <button
-                className="w-24 py-2 text-purple-500 bg-white border border-purple-500 rounded-lg hover:bg-gray-100"
+                className={`w-24 py-2 rounded-lg border ${
+                  isOpen === "add"
+                    ? "text-blue-500 bg-white border-blue-500 hover:bg-gray-100"
+                    : "text-red-500 bg-white border-red-500 hover:bg-red-100"
+                }`}
                 onClick={deleteSelectedData}
               >
                 {isOpen === "add" ? "Cancel" : "Delete"}
               </button>
+
               <button
                 onClick={addInputWeight}
-                className="w-24 py-2 text-gray-50 bg-purple-600 rounded-lg hover:bg-purple-500"
+                className="w-24 py-2 text-gray-50 bg-blue-600 hover:bg-blue-500 rounded-lg"
               >
                 {isOpen === "add" ? "OK" : "Update"}
               </button>
