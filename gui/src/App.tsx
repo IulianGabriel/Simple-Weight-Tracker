@@ -19,7 +19,7 @@ function App() {
   if (error) return `Error! ${error.message}`;
   return (
     <>
-      <Header />
+      <Header weightData={data.weight} />
       <div className="h-128">
         <MyResponsiveLine
           setIsOpen={setIsOpen}
