@@ -8,7 +8,7 @@ const typeDefs = `#graphql
   type Weight {
     id: String
     date: String
-    weight: Int
+    weight: Float
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -16,14 +16,15 @@ const typeDefs = `#graphql
 
   type Query {
     weight: [Weight]
-    getWeight(id: String!): Weight
+    # Reference query
+    # getWeight(id: String!): Weight
   }
   
 
 
   type Mutation {
-  addWeight(id: String!, date: String!, weight: Int!): Weight
-  editWeight(id: String!, date: String!, weight: Int!): Weight
+  addWeight(id: String!, date: String!, weight: Float!): Weight
+  editWeight(id: String!, date: String!, weight: Float!): Weight
   deleteWeight(id: String!): Weight
   }
 `;
@@ -36,11 +37,12 @@ const resolvers = {
             const response = await fetch(url);
             return await response.json();
         },
-        getWeight: async (_, { id }) => {
-            const url = `http://localhost:5000/getWeight/${id}`;
-            const response = await fetch(url);
-            return await response.json();
-        },
+        // Reference Query resolver
+        // getWeight: async (_, { id }) => {
+        //   const url = `http://localhost:5000/getWeight/${id}`;
+        //   const response = await fetch(url);
+        //   return await response.json();
+        // },
     },
     Mutation: {
         addWeight: async (_, { id, date, weight }) => {

@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
 import updateWeightRoutes from "./routes/updateWeightRoute.js";
 import weightRoutes from "./routes/weightRoutes.js";
-import getWeightRoute from "./routes/getWeightRoute.js";
+// import getWeightRoute from "./routes/getWeightRoute.js";
 dotenv.config();
 const app = express();
 const server = createServer(app);
@@ -22,7 +22,7 @@ app.use(weightRoutes);
 app.use(addWeightRoutes);
 app.use(updateWeightRoutes);
 app.use(deleteWeightRoutes);
-app.use(getWeightRoute);
+// app.use(getWeightRoute);
 server.listen(process.env.PORT, () => {
     console.log(`server running on http://localhost:${process.env.PORT || 5000}`);
 });

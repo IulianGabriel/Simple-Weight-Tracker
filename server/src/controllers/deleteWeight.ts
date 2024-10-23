@@ -1,6 +1,5 @@
 import { weightCollection } from "../index.js";
 import { Request, Response } from "express";
-import { ObjectId } from "mongodb";
 import _ from "lodash";
 const { omit } = _;
 

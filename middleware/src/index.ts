@@ -8,7 +8,7 @@ const typeDefs = `#graphql
   type Weight {
     id: String
     date: String
-    weight: Int
+    weight: Float
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -23,8 +23,8 @@ const typeDefs = `#graphql
 
 
   type Mutation {
-  addWeight(id: String!, date: String!, weight: Int!): Weight
-  editWeight(id: String!, date: String!, weight: Int!): Weight
+  addWeight(id: String!, date: String!, weight: Float!): Weight
+  editWeight(id: String!, date: String!, weight: Float!): Weight
   deleteWeight(id: String!): Weight
   }
 `;

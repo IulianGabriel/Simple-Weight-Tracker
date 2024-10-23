@@ -43,7 +43,7 @@ const AddWeight = ({
         variables: {
           id: window.crypto.randomUUID(),
           date: modalDate,
-          weight: parseInt(modalWeight),
+          weight: parseFloat(Number(modalWeight).toFixed(2)),
         },
       });
     } else if (isOpen === "edit" && modalWeight && modalDate) {
@@ -51,7 +51,7 @@ const AddWeight = ({
         variables: {
           id: weightId,
           date: modalDate,
-          weight: parseInt(modalWeight),
+          weight: parseFloat(Number(modalWeight).toFixed(2)),
         },
       });
     }
@@ -65,7 +65,7 @@ const AddWeight = ({
         variables: {
           id: weightId,
           date: modalDate,
-          weight: parseInt(modalWeight),
+          weight: parseFloat(Number(modalWeight).toFixed(2)),
         },
       });
     }

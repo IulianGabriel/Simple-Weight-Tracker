@@ -1,5 +1,3 @@
-import React from "react";
-
 interface WeightData {
   weight: number;
   date: string;
@@ -9,7 +7,7 @@ interface HeaderProps {
   weightData: WeightData[];
 }
 
-const Header: React.FC<HeaderProps> = ({ weightData }) => {
+const Header = ({ weightData }: HeaderProps) => {
   const highestWeight = Math.max(...weightData.map((data) => data.weight));
   const lowestWeight = Math.min(...weightData.map((data) => data.weight));
   const currentWeight = weightData[weightData.length - 1].weight;
