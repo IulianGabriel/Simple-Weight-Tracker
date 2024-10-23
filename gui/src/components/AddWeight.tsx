@@ -1,10 +1,10 @@
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { useMutation } from "@apollo/client";
+import { FaTrashAlt } from "react-icons/fa";
 import { ADD_WEIGHT } from "../queries/addWeight";
 import { GET_WEIGHTS } from "../queries/weightsQuery";
 import { UPDATE_WEIGHT } from "../queries/updateWeight";
 import { DELETE_WEIGHT } from "../queries/deleteWeight";
-import { FaTrashAlt } from "react-icons/fa";
 
 interface ModalInfo {
   modalWeight: string;
@@ -100,7 +100,7 @@ const AddWeight = ({
             }`}
           >
             <p className="text-lg font-medium text-gray-900">
-              {isOpen === "add" ? "Add a record" : "Edit weight"}
+              {isOpen === "add" ? "Add a record" : "Update record"}
             </p>
             <input
               type="number"
