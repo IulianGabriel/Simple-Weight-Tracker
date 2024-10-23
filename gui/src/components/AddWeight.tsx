@@ -4,6 +4,7 @@ import { ADD_WEIGHT } from "../queries/addWeight";
 import { GET_WEIGHTS } from "../queries/weightsQuery";
 import { UPDATE_WEIGHT } from "../queries/updateWeight";
 import { DELETE_WEIGHT } from "../queries/deleteWeight";
+import { FaTrashAlt } from "react-icons/fa";
 
 interface ModalInfo {
   modalWeight: string;
@@ -133,7 +134,14 @@ const AddWeight = ({
                 }`}
                 onClick={deleteSelectedData}
               >
-                {isOpen === "add" ? "Cancel" : "Delete"}
+                {isOpen === "add" ? (
+                  "Cancel"
+                ) : (
+                  <p className="flex items-center justify-center">
+                    Delete
+                    <FaTrashAlt className="ml-1" />
+                  </p>
+                )}
               </button>
 
               <button
