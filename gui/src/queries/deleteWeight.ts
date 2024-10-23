@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
 
 export const DELETE_WEIGHT = gql`
-  mutation DeleteWeight($x: String!) {
-    deleteWeight(x: $x) {
-      x
-      y
+  mutation DeleteWeight($date: String!) {
+    deleteWeight(date: $date) {
+      date
+      weight
     }
   }
 `;

@@ -9,7 +9,7 @@ import { useState } from "react";
 
 function App() {
   const [isOpen, setIsOpen] = useState("closed");
-  const [modalInfo, setModalInfo] = useState({ weight: "", date: "" });
+  const [modalInfo, setModalInfo] = useState({ modalWeight: "", modalDate: "" });
   const { loading, error, data } = useQuery(GET_WEIGHTS);
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;

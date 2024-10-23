@@ -6,8 +6,8 @@ import { UPDATE_WEIGHT } from "../queries/updateWeight";
 import { DELETE_WEIGHT } from "../queries/deleteWeight";
 
 interface ModalInfo {
-  weight: string;
-  date: string;
+  modalWeight: string;
+  modalDate: string;
 }
 
 interface AddWeightProps {
@@ -23,7 +23,7 @@ const AddWeight = ({
   modalInfo,
   setModalInfo,
 }: AddWeightProps) => {
-  const { weight, date = "" } = modalInfo;
+  const { modalWeight, modalDate = "" } = modalInfo;
   const [addWeight] = useMutation(ADD_WEIGHT, {
     refetchQueries: [{ query: GET_WEIGHTS }],
   });
@@ -37,31 +37,31 @@ const AddWeight = ({
   });
 
   const addInputWeight = () => {
-    if (isOpen === "add" && weight && date) {
+    if (isOpen === "add" && modalWeight && modalDate) {
       addWeight({
         variables: {
-          x: date,
-          y: parseInt(weight),
+          date: modalDate,
+          weight: parseInt(modalWeight),
         },
       });
-    } else if (isOpen === "edit" && weight && date) {
+    } else if (isOpen === "edit" && modalWeight && modalDate) {
       updateWeight({
         variables: {
-          x: date,
-          y: parseInt(weight),
+          date: modalDate,
+          weight: parseInt(modalWeight),
         },
       });
     }
     setIsOpen("closed");
-    setModalInfo({ weight: "", date: "" });
+    setModalInfo({ modalWeight: "", modalDate: "" });
   };
 
   const deleteSelectedData = () => {
     if (isOpen === "edit") {
       deleteWeight({
         variables: {
-          x: date,
-          y: parseInt(weight),
+          date: modalDate,
+          weight: parseInt(modalWeight),
         },
       });
     }
@@ -82,7 +82,7 @@ const AddWeight = ({
         open={isOpen === "add" || isOpen === "edit"}
         onClose={() => {
           setIsOpen("closed");
-          setModalInfo({ weight: "", date: "" });
+          setModalInfo({ modalWeight: "", modalDate: "" });
         }}
         className="relative z-50"
       >
@@ -100,9 +100,9 @@ const AddWeight = ({
             <input
               type="number"
               placeholder="Weight"
-              value={weight}
+              value={modalWeight}
               onChange={(e) =>
-                setModalInfo({ ...modalInfo, weight: e.target.value })
+                setModalInfo({ ...modalInfo, modalWeight: e.target.value })
               }
               className="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-600 placeholder-gray-400"
             />
@@ -111,9 +111,9 @@ const AddWeight = ({
               <input
                 type="date"
                 placeholder="Date"
-                value={date}
+                value={modalDate}
                 onChange={(e) =>
-                  setModalInfo({ ...modalInfo, date: e.target.value })
+                  setModalInfo({ ...modalInfo, modalDate: e.target.value })
                 }
                 className="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-600 placeholder-gray-400"
               />

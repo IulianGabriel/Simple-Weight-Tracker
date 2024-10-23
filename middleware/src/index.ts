@@ -6,8 +6,8 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 const typeDefs = `#graphql
 
   type Weight {
-    x: String
-    y: Int
+    date: String
+    weight: Int
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -18,9 +18,9 @@ const typeDefs = `#graphql
   }
 
   type Mutation {
-  addWeight(x: String!, y: Int!): Weight
-  editWeight(x: String!, y:Int!): Weight
-  deleteWeight(x: String!): Weight
+  addWeight(date: String!, weight: Int!): Weight
+  editWeight(date: String!, weight:Int!): Weight
+  deleteWeight(date: String!): Weight
   }
 `;
 
@@ -35,9 +35,9 @@ const resolvers = {
     },
   },
   Mutation: {
-    addWeight: async (_, { x, y }) => {
+    addWeight: async (_, { date, weight }) => {
       const url = "http://localhost:5000/add-weight";
-      const newWeight = { x, y };
+      const newWeight = { date, weight };
 
       const response = await fetch(url, {
         method: "POST",
@@ -50,9 +50,9 @@ const resolvers = {
       const result = await response.json();
       return result;
     },
-    editWeight: async (_, { x, y }) => {
+    editWeight: async (_, { date, weight }) => {
       const url = "http://localhost:5000/edit-weight";
-      const updatedWeight = { x, y };
+      const updatedWeight = { date, weight };
 
       const response = await fetch(url, {
         method: "PUT",
@@ -64,7 +64,7 @@ const resolvers = {
       const result = await response.json();
       return result;
     },
-    deleteWeight: async (_, { x, y }) => {
+    deleteWeight: async (_, { date, weight }) => {
       const url = "http://localhost:5000/delete-weight";
 
       const response = await fetch(url, {
@@ -72,7 +72,7 @@ const resolvers = {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ x, y }),
+        body: JSON.stringify({ date, weight }),
       });
 
       const result = await response.json();

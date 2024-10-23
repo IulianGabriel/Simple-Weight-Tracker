@@ -3,8 +3,8 @@ import "../index.css";
 import React from "react";
 
 interface ModalInfo {
-  weight: string;
-  date: string;
+  modalWeight: string;
+  modalDate: string;
 }
 
 interface DataSeries {
@@ -55,19 +55,36 @@ export const MyResponsiveLine = ({
     pointBorderColor={{ from: "serieColor" }}
     pointLabel="data.yFormatted"
     pointLabelYOffset={-12}
+    tooltip={(point) => {
+      const date = point.point.data.x as string;
+      const weight = point.point.data.y as number;
+
+      return (
+        <div
+          style={{
+            background: "white",
+            padding: "5px",
+            borderRadius: "3px",
+          }}
+        >
+          <strong>Date:</strong> {date}
+          <br />
+          <strong>Weight:</strong> {weight}
+        </div>
+      );
+    }}
     onClick={(point) => {
       // Casting x and y to the correct types
       const clickedDate = point.data.x as string;
       const clickedWeight = point.data.y as string;
       setIsOpen("edit");
       setModalInfo({
-        weight: clickedWeight,
-        date: clickedDate,
+        modalWeight: clickedWeight,
+        modalDate: clickedDate,
       });
     }}
     enableGridX={false}
     useMesh={true}
-    // Apply custom theme
     theme={{
       axis: {
         ticks: {
