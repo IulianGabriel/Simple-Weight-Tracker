@@ -6,6 +6,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 const typeDefs = `#graphql
 
   type Weight {
+    id: String
     date: String
     weight: Int
   }
@@ -15,12 +16,16 @@ const typeDefs = `#graphql
 
   type Query {
     weight: [Weight]
+    # Reference query
+    # getWeight(id: String!): Weight
   }
+  
+
 
   type Mutation {
-  addWeight(date: String!, weight: Int!): Weight
-  editWeight(date: String!, weight:Int!): Weight
-  deleteWeight(date: String!): Weight
+  addWeight(id: String!, date: String!, weight: Int!): Weight
+  editWeight(id: String!, date: String!, weight: Int!): Weight
+  deleteWeight(id: String!): Weight
   }
 `;
 
@@ -33,12 +38,17 @@ const resolvers = {
       const response = await fetch(url);
       return await response.json();
     },
+    // Reference Query resolver
+    // getWeight: async (_, { id }) => {
+    //   const url = `http://localhost:5000/getWeight/${id}`;
+    //   const response = await fetch(url);
+    //   return await response.json();
+    // },
   },
   Mutation: {
-    addWeight: async (_, { date, weight }) => {
+    addWeight: async (_, { id, date, weight }) => {
       const url = "http://localhost:5000/addWeight";
-      const newWeight = { date, weight };
-
+      const newWeight = { id, date, weight };
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -50,8 +60,8 @@ const resolvers = {
       const result = await response.json();
       return result;
     },
-    editWeight: async (_, { date, weight }) => {
-      const url = "http://localhost:5000/editWeight";
+    editWeight: async (_, { id, date, weight }) => {
+      const url = `http://localhost:5000/editWeight/${id}`;
       const updatedWeight = { date, weight };
 
       const response = await fetch(url, {
@@ -64,8 +74,8 @@ const resolvers = {
       const result = await response.json();
       return result;
     },
-    deleteWeight: async (_, { date, weight }) => {
-      const url = "http://localhost:5000/deleteWeight";
+    deleteWeight: async (_, { id, date, weight }) => {
+      const url = `http://localhost:5000/deleteWeight/${id}`;
 
       const response = await fetch(url, {
         method: "DELETE",

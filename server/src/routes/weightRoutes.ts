@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { getWeight } from "../controllers/weights.js";
+import { getWeights } from "../controllers/weights.js";
 
 const router = Router();
 
-router.get("/weight", getWeight);
+router.get("/weight", getWeights);
 
 export default router;

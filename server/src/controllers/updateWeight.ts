@@ -3,11 +3,12 @@ import { weightCollection } from "../index.js";
 import _ from "lodash";
 const { omit } = _;
 
-export const editWeight = async (req: Request, res: Response) => {
+export const updateWeight = async (req: Request, res: Response) => {
   const { date, weight } = req.body;
+  const { id } = req.params;
 
   const result = await weightCollection.updateOne(
-    { date: date },
+    { id },
     { $set: { date, weight } }
   );
 
@@ -15,7 +16,9 @@ export const editWeight = async (req: Request, res: Response) => {
     return res.status(404).json({ message: "Document not found" });
   }
 
-  const updatedDocument = await weightCollection.findOne({ date: date });
+  const updatedDocument = await weightCollection.findOne({
+    id,
+  });
 
   return res.status(200).json(omit(updatedDocument, ["_id"]));
 };

@@ -5,6 +5,7 @@ import React from "react";
 interface ModalInfo {
   modalWeight: string;
   modalDate: string;
+  weightId: string;
 }
 
 interface DataSeries {
@@ -77,10 +78,12 @@ export const MyResponsiveLine = ({
       // Casting x and y to the correct types
       const clickedDate = point.data.x as string;
       const clickedWeight = point.data.y as string;
+      const { id } = point.data as unknown as never;
       setIsOpen("edit");
       setModalInfo({
         modalWeight: clickedWeight,
         modalDate: clickedDate,
+        weightId: id,
       });
     }}
     enableGridX={false}

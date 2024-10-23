@@ -8,6 +8,7 @@ import { DELETE_WEIGHT } from "../queries/deleteWeight";
 interface ModalInfo {
   modalWeight: string;
   modalDate: string;
+  weightId: string;
 }
 
 interface AddWeightProps {
@@ -23,7 +24,7 @@ const AddWeight = ({
   modalInfo,
   setModalInfo,
 }: AddWeightProps) => {
-  const { modalWeight, modalDate = "" } = modalInfo;
+  const { modalWeight, modalDate = "", weightId } = modalInfo;
   const [addWeight] = useMutation(ADD_WEIGHT, {
     refetchQueries: [{ query: GET_WEIGHTS }],
   });
@@ -40,6 +41,7 @@ const AddWeight = ({
     if (isOpen === "add" && modalWeight && modalDate) {
       addWeight({
         variables: {
+          id: window.crypto.randomUUID(),
           date: modalDate,
           weight: parseInt(modalWeight),
         },
@@ -47,19 +49,21 @@ const AddWeight = ({
     } else if (isOpen === "edit" && modalWeight && modalDate) {
       updateWeight({
         variables: {
+          id: weightId,
           date: modalDate,
           weight: parseInt(modalWeight),
         },
       });
     }
     setIsOpen("closed");
-    setModalInfo({ modalWeight: "", modalDate: "" });
+    setModalInfo({ modalWeight: "", modalDate: "", weightId: "" });
   };
 
   const deleteSelectedData = () => {
     if (isOpen === "edit") {
       deleteWeight({
         variables: {
+          id: weightId,
           date: modalDate,
           weight: parseInt(modalWeight),
         },
@@ -82,7 +86,7 @@ const AddWeight = ({
         open={isOpen === "add" || isOpen === "edit"}
         onClose={() => {
           setIsOpen("closed");
-          setModalInfo({ modalWeight: "", modalDate: "" });
+          setModalInfo({ modalWeight: "", modalDate: "", weightId: "" });
         }}
         className="relative z-50"
       >

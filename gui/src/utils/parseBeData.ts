@@ -1,6 +1,7 @@
 interface Weight {
   date: string;
   weight: number;
+  id: string;
 }
 
 interface Data {
@@ -11,6 +12,7 @@ interface Data {
 interface DataPoint {
   x: string;
   y: number;
+  id: string;
 }
 
 interface DataSeries {
@@ -34,6 +36,7 @@ export function parseBeData(data: Data): DataSeries[] {
       data: weights.map((weight: Weight) => ({
         x: weight.date,
         y: weight.weight,
+        id: weight.id,
       })),
     };
   });
