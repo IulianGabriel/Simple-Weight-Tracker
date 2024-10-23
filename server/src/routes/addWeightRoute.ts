@@ -3,6 +3,6 @@ import { addWeight } from "../controllers/addWeight.js";
 
 const router = Router();
 
-router.post("/add-weight", addWeight as any);
+router.post("/addWeight", addWeight as any);
 
 export default router;

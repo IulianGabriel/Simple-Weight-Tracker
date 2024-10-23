@@ -36,7 +36,7 @@ const resolvers = {
   },
   Mutation: {
     addWeight: async (_, { date, weight }) => {
-      const url = "http://localhost:5000/add-weight";
+      const url = "http://localhost:5000/addWeight";
       const newWeight = { date, weight };
 
       const response = await fetch(url, {
@@ -51,7 +51,7 @@ const resolvers = {
       return result;
     },
     editWeight: async (_, { date, weight }) => {
-      const url = "http://localhost:5000/edit-weight";
+      const url = "http://localhost:5000/editWeight";
       const updatedWeight = { date, weight };
 
       const response = await fetch(url, {
@@ -65,7 +65,7 @@ const resolvers = {
       return result;
     },
     deleteWeight: async (_, { date, weight }) => {
-      const url = "http://localhost:5000/delete-weight";
+      const url = "http://localhost:5000/deleteWeight";
 
       const response = await fetch(url, {
         method: "DELETE",
