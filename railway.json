@@ -1,9 +1,0 @@
-{
-  "build": {
-    "builder": "nixpacks",
-    "cmd": "cd server && npm install && npm run compile && cd ../middleware && npm install && npm run compile"
-  },
-  "start": {
-    "cmd": "cd server && PORT=3000 npm start & cd ../middleware && PORT=4000 npm start"
-  }
-}
