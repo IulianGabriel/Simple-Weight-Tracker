@@ -28,13 +28,14 @@ const typeDefs = `#graphql
   deleteWeight(id: String!): Weight
   }
 `;
+const serverUrl = process.env.SERVER_URL || "http://localhost:5000";
 
 // Resolvers define how to fetch the types defined in your schema.
 const resolvers = {
   Query: {
     // For query "weight" it returns this function
     weight: async () => {
-      const url = "http://localhost:5000/weight";
+      const url = `${serverUrl}/weight`;
       const response = await fetch(url);
       return await response.json();
     },
@@ -47,7 +48,7 @@ const resolvers = {
   },
   Mutation: {
     addWeight: async (_, { id, date, weight }) => {
-      const url = "http://localhost:5000/addWeight";
+      const url = `${serverUrl}/addWeight`;
       const newWeight = { id, date, weight };
       const response = await fetch(url, {
         method: "POST",
@@ -61,7 +62,7 @@ const resolvers = {
       return result;
     },
     editWeight: async (_, { id, date, weight }) => {
-      const url = `http://localhost:5000/editWeight/${id}`;
+      const url = `${serverUrl}/editWeight/${id}`;
       const updatedWeight = { date, weight };
 
       const response = await fetch(url, {
@@ -75,7 +76,7 @@ const resolvers = {
       return result;
     },
     deleteWeight: async (_, { id, date, weight }) => {
-      const url = `http://localhost:5000/deleteWeight/${id}`;
+      const url = `${serverUrl}/deleteWeight/${id}`;
 
       const response = await fetch(url, {
         method: "DELETE",

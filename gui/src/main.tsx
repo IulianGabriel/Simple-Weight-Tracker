@@ -5,7 +5,7 @@ import App from "./App.tsx";
 import "./index.css";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: import.meta.env.VITE_MIDDLEWARE_URL,
   cache: new InMemoryCache(),
 });
 

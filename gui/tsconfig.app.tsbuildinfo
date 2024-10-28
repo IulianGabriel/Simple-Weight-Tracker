@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/addweight.tsx","./src/components/graph.tsx","./src/components/header.tsx","./src/queries/addweight.ts","./src/queries/deleteweight.ts","./src/queries/getweight.ts","./src/queries/updateweight.ts","./src/queries/weightsquery.ts","./src/utils/parsebedata.ts"],"version":"5.6.2"}
