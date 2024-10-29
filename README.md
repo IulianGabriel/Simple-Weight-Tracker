@@ -2,6 +2,7 @@
 <p align="center">
   <a href="https://simple-weight-tracker.vercel.app/" style="display:inline-block;">Live App</a>
 </p>
+  <p align="center"> ~It takes around a minute for the backend server to start.~ </p>
 
 ## Overview
 **Simple Weight Tracker** is a web application designed for tracking weight records over time. Users can view their weight history displayed on a dynamic graph, including the highest, current, and lowest weights recorded. The application provides an intuitive and straightforward interface for adding, updating, and deleting weight records.
