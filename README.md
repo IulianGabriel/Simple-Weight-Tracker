@@ -1,6 +1,6 @@
 <h1 align="center">Simple Weight Tracker</h1>
 <p align="center">
-  <a href="dv97q6iy95j7q.cloudfront.net" style="display:inline-block;">Live App</a>
+  <a href="https://simple-weight-tracker.vercel.app/" style="display:inline-block;">Live App</a>
 </p>
 
 ## Overview
