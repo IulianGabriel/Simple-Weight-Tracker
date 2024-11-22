@@ -28,7 +28,7 @@ const typeDefs = `#graphql
   deleteWeight(id: String!): Weight
   }
 `;
-const serverUrl = process.env.SERVER_URL || "http://localhost:5000";
+const serverUrl = process.env.SERVER_URL || "http://localhost:4000";
 
 // Resolvers define how to fetch the types defined in your schema.
 const resolvers = {
